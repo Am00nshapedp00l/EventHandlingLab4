@@ -1,11 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import ToDoForm from './src/ToDoForm';
+import React, { useState } from 'react';
 
 export default function App() {
+  const [tasks, setTasks] = useState([]);
+
+  const addTask = (taskText) => {
+    setTasks([...tasks, taskText]);
+    console.log(`New task added: ${taskText}`);
+  };
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <ToDoForm addTask={addTask} />
       <StatusBar style="auto" />
     </View>
   );
@@ -19,3 +27,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
